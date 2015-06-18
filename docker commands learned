@@ -1,0 +1,164 @@
+starting docker from cmd
+set PATH=%PATH%;"c:\Program Files (x86)\Git\bin"
+boot2docker start
+set DOCKER_HOST=tcp://192.168.59.103:2376
+set DOCKER_CERT_PATH=C:\Users\ukumap5\.boot2docker\certs\boot2docker-vm
+set DOCKER_TLS_VERIFY=1
+
+docker ps
+
+running interactive containers
+ docker run -t -i ubuntu:14.04 /bin/bash
+ -t for terminal inside our new container 
+ -i  flag allows us to make an interactive connection by grabbing the standard in (STDIN) of the container.
+ 
+ We've also specified a new command for our container to run: /bin/bash. This will launch a Bash shell inside our container.
+ 
+pulling/downloading image
+ docker pull training/sinatra
+The team can now use this image by running their own containers.
+ docker run -t -i training/sinatra /bin/bash
+ 
+
+creating our own images
+: create a container from the image we'd like to update.
+
+docker run -t -i training/sinatra /bin/bash
+
+
+
+1. docker pull image:tag
+to pull the image from docker repo
+
+or docker pull image:latest
+
+2. cat /etc/issue 
+to check the virutal machine I'm on 
+
+3. docker run -it centos:latest /bin/bash
+to run docker centos image. This command creates a container based on this image and excute the cmd that we give.
+
+4. cat /etc/redhat-release
+to check the image on top of the virtual m/c
+
+5. ls 
+to check the directories 
+
+6. cd /home
+change the current directory to home
+
+7. touch darkzebra.txt
+to create a directory
+
+8. exit 
+to exit out of the terminal
+
+when a docker terminal runs, it runs only 1 s/w at a time
+
+9. docker ps 
+to show the processes
+
+10. docker ps -a
+to show all
+
+11. docker restart container_id
+
+12. docker attach container_id
+brings back in the software (bash) of the container where I was before
+
+13. docker rm container_id
+to remove the container
+
+14. docker -it means to have an interactive and t for terminal
+
+15. docker kill container_id
+
+16. docker rm $(docker ps -aq)
+to remove all containers
+
+17. docker run -it -rm image sh
+    docker run -it -rm image echo 'hello'
+	
+18. docker run -it --rm -v /home/darkzebra/commands:/darkzebra busybox sh
+
+19. pwd print working dir
+
+Dockerizing applications: running in background
+
+20. docker run -d ubuntu:14.04 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+
+21. to check the output 
+docker logs container_name
+
+21. to stop the container
+docker stop container_name
+
+
+working with containers
+
+Running a web application in Docker
+
+22. docker run -d -P training/webapp python app.py    (-p flag to tell docker to map any required ports inside container to host)
+
+23. to return the details of last docker
+
+docker ps -l
+
+24. mapping container and host ports
+docker run -d -p 5000:5000 training/webapp python app.py
+
+25. docker ip 
+to get the ip address of the machine 
+
+26. to check the output of the webapplication on browser type
+http://192.168.59.103:5000/
+
+27. to check logs
+docker logs -f nostalgic_morse
+
+28. docker top container_name
+to check the processes running in our application'S CONtainer
+
+29. inspecting web app container
+docker inspect container_name
+
+
+working with docker images
+
+30. to download an image
+docker pull image_name
+
+31. search for an image
+docker search search_term
+
+32. updating or creating new images. we need to first create the container 
+docker commit -m "commit message" -a "author_name"
+
+33. to create new images using dockerfile
+https://docs.docker.com/userguide/dockerimages/
+
+
+34. linking containers together
+ docker run -d -P --name web --link db:db training/webapp python app.py
+ 
+ it will allow web container to access the database container. here db is the source container and web is the recepient containter.
+
+35. managing data in containers
+
+adding volumes from the host machine to the docker container
+docker run --rm -it -v /c/Users/ukumap5/Desktop/container:/container ubuntu /bin/bash
+
+login to docker: docker login --email= --password= --username=
+
+cranky_bohr
+
+
+
+------------------------------
+docker run -it training/sinatra /bin/bash
+touch django-app
+exit
+
+docker commit -m "first check in" -a "prashant" 4b0a046b7f4e prashant4nov/application:v1
+
+docker run -it -p 192.168.59.103:8000:8000 -p 192.168.59.103:8080:8080 -v /c/Users/ukumap5/Downloads/nonrel-guestbook:/home/nonrel-guestbook training/webapp /bin/bash
