@@ -162,3 +162,19 @@ exit
 docker commit -m "first check in" -a "prashant" 4b0a046b7f4e prashant4nov/application:v1
 
 docker run -it -p 192.168.59.103:8000:8000 -p 192.168.59.103:8080:8080 -v /c/Users/ukumap5/Downloads/nonrel-guestbook:/home/nonrel-guestbook training/webapp /bin/bash
+
+
+iamge from dockerfile 
+
+1. docker build -t name .
+
+it will return an image id
+
+2. docker run -it image_id
+it will create an container using this image id\
+
+3. exit
+
+4. docker commit - m "commit" -a "prashant" container_id prashant4nov/statsagg:v1 [image name]
+
+5. docker push prashant4nov/statsagg:v1 [image_name]
