@@ -184,3 +184,15 @@ docker ps -a -q | xargs docker rm
 
 8. for port mapping 
 https://docs.docker.com/installation/mac/
+
+9. running neo4j on docker: https://hub.docker.com/_/neo4j/ . , http://neo4j.com/docs/operations-manual/current/installation/docker/
+ docker run --publish=7474:7474 --publish=7687:7687 --env=NEO4J_ACCEPT_LICENSE_AGREEMENT=yes --env=NEO4J_AUTH=neo4j/admin --name  neo4j --volume=/tmp:/data neo4j:3.2.3-enterprise
+
+10. stop neo4j docker
+docker stop neo4j
+
+11. remove neo4j docker
+docker rm neo4j
+
+12. check docker containers running 
+docker ps
